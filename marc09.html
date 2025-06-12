@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title> harry y RM </title>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+   
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap-theme.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;700&display=swap" rel="stylesheet">
+
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Roboto Slab', serif;
+    background: #1a1a1a;
+    color: #f0f0f0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+  }
+
+  header {
+    width: 100%;
+    max-width: 800px;
+    margin-bottom: 30px;
+  }
+
+  #form {
+    display: flex;
+    justify-content: center;
+  }
+
+  .search {
+    width: 100%;
+    max-width: 500px;
+    padding: 12px 20px;
+    font-size: 1rem;
+    border: 2px solid #444;
+    border-radius: 50px;
+    background: rgba(255, 255, 255, 0.1);
+    color: #f0f0f0;
+    transition: border-color 0.3s, background 0.3s;
+  }
+
+  .search:focus {
+    outline: none;
+    border-color: #ffcc00;
+    background: rgba(255, 255, 255, 0.2);
+  }
+
+  main {
+    width: 100%;
+    max-width: 1000px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 20px;
+    align-items: start;
+  }
+
+  .character-card {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid #333;
+    border-radius: 12px;
+    overflow: hidden;
+    text-align: center;
+    transition: transform 0.2s, background 0.3s;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .character-card:hover {
+    transform: translateY(-5px);
+    background: rgba(255, 204, 0, 0.1);
+  }
+
+  .character-card img {
+    width: 100%;
+    aspect-ratio: 1/1;
+    object-fit: cover;
+    border-bottom: 1px solid #333;
+  }
+
+  .character-info {
+    padding: 10px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .character-info h3 {
+    margin-top: 10px;
+    font-size: 1.1rem;
+    color: #ffcc00;
+  }
+
+  .character-info p {
+    font-size: 0.9rem;
+    line-height: 1.3;
+  }
+
+  .character-info strong {
+    color: #ddd;
+  }
+
+  @media (max-width: 600px) {
+    .search { max-width: 100%; }
+    main { grid-template-columns: 1fr; }
+  }
+</style>
+  </head>
+  <body>
+     <nav class="navbar navbar-light">
+        <div class="contener" style="font-family: 'Unbounded', sans-serif; background-color: #081042;">
+            <a class="navbar-brand" href="index.html" style="color: #eef0f2; font-size: 21px;">Inicio</a>
+            
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                <ul class="nav navbar-nav"
+                    style="font-family: 'Vazirmatn', sans-serif; background-color: none; font-size: 18px;">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="" id="navbarDropdownMenuLink" data-toggle="dropdown"
+                            aria-haspopup="true" aria-expanded="false" style="color: #eef0f2;">Unidad 1</a>
+                        
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <a class="dropdown-item" href="marc01.php">Mostrar datos 1</a><br>
+                            <a class="dropdown-item" href="marc02.php">Mostrar Datos 2</a><br>
+                            <a class="dropdown-item" href="marc03.php">Mostrar Datos 3</a><br>
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="" id="navbarDropdownMenuLink" data-toggle="dropdown"
+                            aria-haspopup="true" aria-expanded="false" style="color: #eef0f2;">
+                            Unidad 2
+                        </a>
+                       
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <a class="dropdown-item" href="marc04.php">Practica 4</a><br>
+                            <a class="dropdown-item" href="marc05.php">Practica 5</a><br>
+                            <a class="dropdown-item" href="marc05a.php">Practica 6</a><br>
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="" id="navbarDropdownMenuLink" data-toggle="dropdown"
+                            aria-haspopup="true" aria-expanded="false" style="color: #eef0f2;">
+                            Unidad 3
+                        </a>
+                       
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <a class="dropdown-item" href="marc06.html">pokedex</a><br>
+                            <a clasa="dropdown-item" href="marc07.html">peliculas</a><br>
+                            <a class="dropdown-item" href="marc08.html">dragon ball</a><br>
+                            <a class="dropdown-item" href="marc09.html">harry y RM</a><br>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <header>
+      <form id="form">
+        <input type="text" id="search" class="search" placeholder="Buscar Personaje"/>
+      </form>
+    </header>
+    <main id="main"></main>
+
+    <script>
+      const API_HP = "https://hp-api.onrender.com/api/characters";
+      const API_RM = "https://rickandmortyapi.com/api/character";
+
+      const main = document.getElementById("main");
+      const form = document.getElementById("form");
+      const search = document.getElementById("search");
+
+      getAllCharacters();
+
+      async function getAllCharacters() {
+        const [rmRes, hpRes] = await Promise.all([
+          fetch(API_RM).then((res) => res.json()),
+          fetch(API_HP).then((res) => res.json()),
+        ]);
+
+        const rickChars = rmRes.results || [];
+        const harryChars = hpRes || [];
+
+        showCharacters([...harryChars, ...rickChars]);
+      }
+
+      async function getCharacters(hp_url, rm_url) {
+          try {
+            const hpRes = await fetch(API_HP);
+            const hpData = await hpRes.json();
+            const searchTerm = new URLSearchParams(hp_url.split('?')[1]).get('name');
+            const harryChars = hpData.filter(char => 
+              char.name && char.name.toLowerCase().includes(searchTerm.toLowerCase())
+            );
+
+            const rmRes = await fetch(rm_url);
+            const rmData = await rmRes.json();
+            const rickChars = rmData.results || [];
+
+            showCharacters([...harryChars, ...rickChars]);
+          } catch (error) {
+            console.error('Error en búsqueda:', error);
+            showCharacters([...[], ...[]]);
+          }
+        }
+
+      function showCharacters(characters) {
+        main.innerHTML = "";
+
+        characters.forEach((char) => {
+            let name = char.name || "Desconocido";
+            let image = char.image || "";
+            let status = char.status || "Desconocido";
+            let species = char.species || "Desconocido";
+            const charElement = document.createElement("div");
+            charElement.classList.add("character-card");
+            charElement.innerHTML = `
+                <img src="${image}" alt="${name}" />
+                <div class="character-info">
+                    <p><strong>Estado:</strong> ${status}</p>
+                    <p><strong>Especie:</strong> ${species}</p>
+                    <h3>${name}</h3>
+                </div>
+                    `;
+            main.appendChild(charElement);
+          
+        });
+    }
+
+      form.addEventListener("submit", (e) => {
+        e.preventDefault();
+        const searchTerm = search.value.toLowerCase();
+        if (searchTerm && searchTerm !== "") {
+          getCharacters(
+            API_HP + `?name=${searchTerm}`,
+            API_RM + `?name=${searchTerm}`
+          );
+          search.value = "";
+        } else {
+          window.location.reload();
+        }
+      });
+    </script>
+  </body>
+</html>

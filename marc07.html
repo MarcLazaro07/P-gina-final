@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Películas API</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+   
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap-theme.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;700&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      background-color: #222;
+      color: #fff;
+      font-family: Arial, sans-serif;
+      margin: 0;
+    }
+    header {
+      padding: 20px;
+      text-align: center;
+      background-color: #111;
+    }
+    .search {
+      width: 50%;
+      padding: 10px;
+      border-radius: 5px;
+      border: none;
+      font-size: 16px;
+    }
+
+    main {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 20px;
+  }
+
+    .movie {
+      background-color: #333;
+      border-radius: 10px;
+      overflow: hidden;
+      margin: 20px;
+      width: 300px;
+      display: inline-block;
+      vertical-align: top;
+    }
+    .movie img {
+      width: 100%;
+      display: block;
+    }
+    .movie-info {
+      padding: 15px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .movie-info span {
+      padding: 5px 10px;
+      border-radius: 5px;
+      font-weight: bold;
+    }
+    .green { color: limegreen; }
+    .orange { color: orange; }
+    .red { color: red; }
+    .overview {
+      padding: 15px;
+      font-size: 14px;
+      color: #ccc;
+    }
+  </style>
+</head>
+<body>
+   <nav class="navbar navbar-light">
+        <div class="contener" style="font-family: 'Unbounded', sans-serif; background-color: #081042;">
+            <a class="navbar-brand" href="index.html" style="color: #eef0f2; font-size: 21px;">Inicio</a>
+            
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                <ul class="nav navbar-nav"
+                    style="font-family: 'Vazirmatn', sans-serif; background-color: none; font-size: 18px;">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="" id="navbarDropdownMenuLink" data-toggle="dropdown"
+                            aria-haspopup="true" aria-expanded="false" style="color: #eef0f2;">Unidad 1</a>
+                        
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <a class="dropdown-item" href="marc01.php">Mostrar datos 1</a><br>
+                            <a class="dropdown-item" href="marc02.php">Mostrar Datos 2</a><br>
+                            <a class="dropdown-item" href="marc03.php">Mostrar Datos 3</a><br>
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="" id="navbarDropdownMenuLink" data-toggle="dropdown"
+                            aria-haspopup="true" aria-expanded="false" style="color: #eef0f2;">
+                            Unidad 2
+                        </a>
+                       
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <a class="dropdown-item" href="marc04.php">Practica 4</a><br>
+                            <a class="dropdown-item" href="marc05.php">Practica 5</a><br>
+                            <a class="dropdown-item" href="marc05a.php">Practica 6</a><br>
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="" id="navbarDropdownMenuLink" data-toggle="dropdown"
+                            aria-haspopup="true" aria-expanded="false" style="color: #eef0f2;">
+                            Unidad 3
+                        </a>
+                       
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <a class="dropdown-item" href="marc06.html">pokedex</a><br>
+                            <a clasa="dropdown-item" href="marc07.html">peliculas</a><br>
+                            <a class="dropdown-item" href="marc08.html">dragon ball</a><br>
+                            <a class="dropdown-item" href="marc09.html">harry y RM</a><br>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+  <header>
+    <input type="text" id="search" class="search" placeholder="Buscar películas...">
+  </header>
+  <main id="main"></main>
+
+  <script>
+    const API_URL = "https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=3fd2be6f0c70a2a598f084ddfb75487c&page=1";
+    const IMG_PATH = "https://image.tmdb.org/t/p/w300";
+    const SEARCH_API = "https://api.themoviedb.org/3/search/movie?api_key=3fd2be6f0c70a2a598f084ddfb75487c&query=";
+
+    const main = document.getElementById("main");
+    const search = document.getElementById("search");
+
+    getMovies(API_URL);
+
+    async function getMovies(url) {
+      const res = await fetch(url);
+      const data = await res.json();
+      showMovies(data.results);
+    }
+
+    function showMovies(movies) {
+      main.innerHTML = "";
+      movies.forEach(movie => {
+        const { title, poster_path, vote_average, overview } = movie;
+
+        const movieEl = document.createElement("div");
+        movieEl.classList.add("movie");
+
+        movieEl.innerHTML = `
+          <img src="${IMG_PATH + poster_path}" alt="${title}">
+          <div class="movie-info">
+            <h3>${title}</h3>
+            <span class="${getClassByRate(vote_average)}">${vote_average}</span>
+          </div>
+          <div class="overview">
+            <h3>Overview</h3>
+            ${overview}
+          </div>
+        `;
+        main.appendChild(movieEl);
+      });
+    }
+
+    function getClassByRate(vote) {
+      if (vote >= 8) return "green";
+      else if (vote >= 5) return "orange";
+      else return "red";
+    }
+
+    search.addEventListener("input", (e) => {
+      const searchTerm = e.target.value;
+      if (searchTerm && searchTerm !== "") {
+        getMovies(SEARCH_API + encodeURIComponent(searchTerm));
+      } else {
+        getMovies(API_URL);
+      }
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Pokedex</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+   
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap-theme.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;700&display=swap" rel="stylesheet">
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    body {
+  background-image: url('pokeimg.webp');
+  background-repeat: no-repeat;       
+  background-size: cover;             
+  background-position: center center; 
+      margin: 0;
+      font-family: Verdana, Geneva, Tahoma, sans-serif;
+      display: flex;
+      flex-direction: column;
+      padding: 20px;
+    }
+    .container {
+      max-width: 1000px;
+      width: 100%;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      align-items: start;
+    }
+    .poke-panel {
+      position: relative;
+    }
+    #pokeImg {
+      width: 250px;
+      height: 250px;
+      object-fit: contain;
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    }
+    .info {
+      margin-top: 10px;
+      line-height: 1.5;
+    }
+    .info div {
+      font-size: 18px;
+      color: #333;
+    }
+    .controls {
+      margin-top: 10px;
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+    .controls input {
+      flex: 1;
+      padding: 8px;
+      font-size: 16px;
+      border-radius: 4px;
+      border: 1px solid #ccc;
+    }
+    .controls button {
+      padding: 10px 16px;
+      background-color: #1373a0;
+      border: none;
+      border-radius: 6px;
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    .controls button:hover {
+      background-color: #0f5f85;
+    }
+    .chart-container {
+      width: 100%;
+      max-width: 600px;
+    }
+  </style>
+</head>
+<body>
+   <nav class="navbar navbar-light">
+        <div class="contener" style="font-family: 'Unbounded', sans-serif; background-color: #081042;">
+            <a class="navbar-brand" href="index.html" style="color: #eef0f2; font-size: 21px;">Inicio</a>
+            
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                <ul class="nav navbar-nav"
+                    style="font-family: 'Vazirmatn', sans-serif; background-color: none; font-size: 18px;">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="" id="navbarDropdownMenuLink" data-toggle="dropdown"
+                            aria-haspopup="true" aria-expanded="false" style="color: #eef0f2;">Unidad 1</a>
+                        
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <a class="dropdown-item" href="marc01.php">Mostrar datos 1</a><br>
+                            <a class="dropdown-item" href="marc02.php">Mostrar Datos 2</a><br>
+                            <a class="dropdown-item" href="marc03.php">Mostrar Datos 3</a><br>
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="" id="navbarDropdownMenuLink" data-toggle="dropdown"
+                            aria-haspopup="true" aria-expanded="false" style="color: #eef0f2;">
+                            Unidad 2
+                        </a>
+                       
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <a class="dropdown-item" href="marc04.php">Practica 4</a><br>
+                            <a class="dropdown-item" href="marc05.php">Practica 5</a><br>
+                            <a class="dropdown-item" href="marc05a.php">Practica 6</a><br>
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="" id="navbarDropdownMenuLink" data-toggle="dropdown"
+                            aria-haspopup="true" aria-expanded="false" style="color: #eef0f2;">
+                            Unidad 3
+                        </a>
+                       
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <a class="dropdown-item" href="marc06.html">pokedex</a><br>
+                            <a clasa="dropdown-item" href="marc07.html">peliculas</a><br>
+                            <a class="dropdown-item" href="marc08.html">dragon ball</a><br>
+                            <a class="dropdown-item" href="marc09.html">harry y RM</a><br>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+  <h1>Pokedex 📊</h1>
+  <div class="container">
+    <div class="poke-panel">
+      <img id="pokeImg" src="pokebola.png" alt="Pokéball" />
+      <div class="info">
+        <div id="pokename">Nombre: —</div>
+        <div id="pokeHe">Altura: —</div>
+        <div id="pokeWe">Peso: —</div>
+        <div id="pokeType">Tipo: —</div>
+        <div id="pokeitem">Habilidad: —</div>
+        <div id="pokemove1">Movimiento 1: —</div>
+        <div id="pokemove2">Movimiento 2: —</div>
+        <div id="pokemove3">Movimiento 3: —</div>
+        <div id="pokemove4">Movimiento 4: —</div>
+      </div>
+      <div class="controls">
+        <input type="text" id="pokeName" placeholder="Escribe el nombre (e.g., pikachu)" />
+        <button id="fetchBtn">Fetch</button>
+      </div>
+    </div>
+
+    <div class="chart-container">
+      <canvas id="miCanvas"></canvas>
+    </div>
+  </div>
+
+  <script>
+ 
+    function pokeImage(url) {
+      const pokePhoto = document.getElementById("pokeImg");
+      pokePhoto.src = url;
+    }
+
+    async function fetchPokemon() {
+      const input = document.getElementById("pokeName");
+      const name = input.value.trim().toLowerCase();
+      if (!name) {
+        alert("Por favor, ingresa el nombre de un Pokémon.");
+        return;
+      }
+      const url = `https://pokeapi.co/api/v2/pokemon/${name}`;
+
+      try {
+        const res = await fetch(url);
+        if (res.status !== 200) {
+          alert("Pokémon no encontrado. Revisa el nombre e inténtalo de nuevo.");
+          return;
+        }
+        const data = await res.json();
+
+        pokeImage(data.sprites.front_default || "pokebola.png");
+        
+        document.getElementById('pokename').textContent = `Nombre: ${data.name}`;
+        document.getElementById('pokeHe').textContent   = `Altura: ${data.height}`;
+        document.getElementById('pokeWe').textContent   = `Peso: ${data.weight}`;
+        document.getElementById('pokeType').textContent = `Tipo: ${data.types[0].type.name}`;
+        document.getElementById('pokeitem').textContent = `Habilidad: ${data.abilities[0].ability.name}`;
+        document.getElementById('pokemove1').textContent = `Movimiento 1: ${data.moves[0]?.move.name || 'N/A'}`;
+        document.getElementById('pokemove2').textContent = `Movimiento 2: ${data.moves[1]?.move.name || 'N/A'}`;
+        document.getElementById('pokemove3').textContent = `Movimiento 3: ${data.moves[2]?.move.name || 'N/A'}`;
+        document.getElementById('pokemove4').textContent = `Movimiento 4: ${data.moves[3]?.move.name || 'N/A'}`;
+
+        const ctx = document.getElementById("miCanvas").getContext("2d");
+        if (window.miChart) {
+          window.miChart.destroy();
+        }
+        window.miChart = new Chart(ctx, {
+          type: "bar",
+          data: {
+            labels: ["HP", "Attack", "Defense", "Sp. Attack", "Sp. Defense", "Speed"],
+            datasets: [{
+              label: `${data.name} Stats`,
+              data: data.stats.map(s => s.base_stat),
+              borderColor: [
+                'rgba(255, 99, 132, 1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)',
+                'rgba(255, 159, 64, 1)'
+              ],
+              backgroundColor: [
+                'rgba(255, 99, 132, 0.5)',
+                'rgba(54, 162, 235, 0.5)',
+                'rgba(255, 206, 86, 0.5)',
+                'rgba(75, 192, 192, 0.5)',
+                'rgba(153, 102, 255, 0.5)',
+                'rgba(255, 87, 8, 0.65)'
+              ],
+              borderWidth: 1
+            }]
+          },
+          options: {
+            scales: {
+              x: {
+                ticks: {
+                  maxRotation: 90,
+                  minRotation: 90,
+                  font: { size: 14 }
+                }
+              }
+            }
+          }
+        });
+
+      } catch (error) {
+        console.error("Error al obtener datos:", error);
+        alert("Ocurrió un error al consultar la API.");
+      }
+    }
+
+    document.getElementById("fetchBtn").addEventListener("click", fetchPokemon);
+  </script>
+</body>
+</html>
